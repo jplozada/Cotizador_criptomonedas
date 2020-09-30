@@ -23,7 +23,7 @@ const Boton = styled.input`
     }
 `;
 
-const Formulario = () => {
+const Formulario = ({guardarMoneda, guardarCriptomoneda}) => {
 
     // State del listado de criptomonedas
     const [listadocripto, guardarCriptomonedas] = useState([]);
@@ -37,7 +37,7 @@ const Formulario = () => {
     ]
 
     // Utilizar useMoneda
-    const [moneda, SelectMonedas, actualizarState] = useMoneda('Elige tu Moneda', '', MONEDAS);
+    const [moneda, SelectMonedas] = useMoneda('Elige tu Moneda', '', MONEDAS);
 
     // utilizar useCriptomoneda
     const [criptomoneda, SelectCripto] = useCriptomoneda('Elige tu criptomoneda', '', listadocripto);
@@ -64,7 +64,8 @@ const Formulario = () => {
 
         // Pasar los datos al componenete principal
         guardarError(false);
-
+        guardarMoneda(moneda);
+        guardarCriptomoneda(criptomoneda);
     }
 
     return ( 
